@@ -1,0 +1,41 @@
+<form [formGroup]="signupForm" (ngSubmit)="login()" >
+  <div class="container pt-5">
+      <div class="row justify-content-center">
+          <div class="col-md-6 col-sm-8">
+
+              <div class="form-group p-3 border ">
+                  <h3 class=" text-center">Signup</h3>
+                  <label class="form-label pt-3">Email</label>
+
+                  <input type="text" class="form-control" name="email" formControlName="email"
+                      placeholder=" Enter Email Id" required>
+                      <span class="text-danger" *ngIf="signupForm.get('email').touched && signupForm.get('email').hasError('required')">Enter correct Email</span>
+
+                  <label class="form-label pt-3"> Password</label>
+                  <input [type]="changetype?'password':'text'" class="form-control" formControlName="password"
+
+                      name="password" placeholder="Enter password" required>
+                      <span class="showbtn" (click)="show()"><i
+                        [ngClass]="visable?'fa fa-eye':'fa fa-eye-slash'"></i></span>
+                      <span class=" text-danger" *ngIf="signupForm.get('password').touched && signupForm.get('password').hasError('required')">Enter correct Password</span>
+                      <label class="form-label pt-3"> UserName</label>
+                      <input type="text" class="form-control" formControlName="UserName"
+                          name="password" placeholder="Enter UserName" required>
+                          <span class="text-danger" *ngIf="signupForm.get('UserName').touched && signupForm.get('UserName').hasError('required')">Enter correct username</span>
+                      
+
+                      
+                     
+
+
+                  <!-- <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> -->
+                  <button class="btn btn-primary p-2">Signin</button>
+                 
+                  <p class="text-center pt-3">already have an account?<a href="login">SignIn</a></p>
+                 
+              </div>
+          </div>
+
+      </div>
+  </div>
+</form>

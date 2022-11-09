@@ -1,0 +1,34 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" >
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-sm-8 col-xxl-8">
+
+                <div class="form-group p-3 border ">
+                    <h3 class=" text-center">SignIn</h3>
+                    <label class="form-label pt-3">Email</label>
+
+                    <input type="text" class="form-control" name="username" formControlName="username"
+                        placeholder=" Enter username Id" required>
+                        <span class="text-danger" *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')">Enter correct username</span>
+
+                    <label class="form-label pt-3"> Password</label>
+                    <input [type]="changetype?'password':'text'" class="form-control" formControlName="password"
+                        name="password" placeholder="Enter password" required>
+                        
+                    <span class="showbtn" (click)="show()"><i
+                        [ngClass]="visable?'fa fa-eye-slash':' fa fa-eye'"></i></span>
+                        
+                        <span class=" text-danger" *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">Enter correct Password</span>
+
+
+                    <!-- <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span> -->
+                    <button class="btn btn-primary p-2">Signin</button>
+                    <p class="text-center pt-3"><a href="#">FortgotPassword?</a></p>
+                    <p class="text-center pt-3">Don't have an account?<a href="signup">signUp</a></p>
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

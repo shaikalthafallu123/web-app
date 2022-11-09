@@ -1,0 +1,182 @@
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main id="main" class="main">
+    <div class="pagetitle">
+       <h1 class="text-center">Overview orders</h1>
+       <nav>
+          <ol class="breadcrumb mt-2">
+             <li class="breadcrumb-item"><a routerLink="/">welcome</a></li>
+             <li class="breadcrumb-item active">althaf</li>
+          </ol>
+       </nav>
+    </div>
+    <section class="section dashboard">
+       <div class="row">
+          <div class="col-lg-6">
+             <div class="row">
+                <div class="col-xxl-4 col-md-6">
+                   <div class="card info-card sales-card">
+                    
+                      <div class="card-body">
+
+                         <h5 class="card-title text-center" >New Orders 
+                           <span></span></h5>
+                         <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-cart"></i></div>
+                            <div class="ps-3" *ngFor="let da of countlist">
+                               <h6>{{da.new_orders}}</h6>
+                               <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card sales-card">
+                   
+                     <div class="card-body">
+                        <h5 class="card-title text-center">Total Orders <span>| Today</span></h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-cart"></i></div>
+                           <div class="ps-3">
+                              <h6>{{total}}</h6>
+                              <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                <div class="col-xxl-4 col-md-6">
+                   <div class="card info-card revenue-card">
+                    
+                      <div class="card-body">
+                         <h5 class="card-title" >Average Sale</h5>
+                         <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-currency-dollar"></i></div>
+                            <div class="ps-3" *ngFor="let da of salelist">
+                               <h6>{{da.average_sale}}</h6>
+                               <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="col-xxl-4 col-md-6">
+                   <div class="card info-card customers-card">
+                   
+                      <div class="card-body ">
+                         <h5 class="card-title">Total Earnings <span></span></h5>
+                         <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class="bi bi-people"></i></div>
+                            <div class="ps-3" *ngFor="let da of totalist">
+                               <h6>{{da.total_earnings}}</h6>
+                               <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+                
+                     <div class="card-body">
+                        <table class="table table-borderless datatable">
+                           <tbody>
+                              <tr *ngFor="let sum of summarylist">
+                              
+                                    <i  *ngIf="sum.order_status==='processing'" class="fas fa-exclamation-triangle  ms-2 mt-2"></i>
+                                    <i  *ngIf="sum.order_status==='in delivery'" class="fas fa-exclamation-circle ms-2 mt-2"></i>
+                                    <i  *ngIf="sum.order_status==='delivered'" class="far fa-check-circle ms-2 mt-2"></i>
+                                    <i  *ngIf="sum.order_status==='refund'" class="fas fa-undo ms-2 mt-2"></i>
+                                    <i  *ngIf="sum.order_status==='cancelled'" class="fas fa-times-circle ms-2 mt-2"></i>
+
+              
+                                 <td><a href="#" class="text-primary">{{sum.order_status}}</a></td>
+                                 
+                          
+                                 <td><span class="badge bg-success">{{sum.count}}</span></td>
+                                 <td><span class="badge bg-success">{{((sum.count/total)*100).toFixed(0)}}%</span></td>
+                              </tr>
+                            
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div> 
+                <div class="col-12">
+                   <div class="card">
+                 
+                  <div class="card-body">
+                         <h5 class="card-title">Reports <span>/Today</span></h5>
+                         <div id="reportsChart"></div> 
+                      </div> 
+                   </div>
+                </div>
+                
+             
+             </div>
+          </div>
+<!-- yyyyyyy -->
+
+          <div class="col-lg-6">
+            <div class="row">
+               <div class="col-xxl-4 col-md-12">
+                 
+               </div>
+               
+               <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+                
+                     <div class="card-body">
+                        <h5 class="card-title">Latest Order</h5>
+                        <input scope="row"class="form-control text-center" type="text" [(ngModel)]="seacrhfilter" placeholder="show filters..">
+                        <i  class="fa fa-filter"></i>
+                     
+                        <table class="table table-borderless datatable">
+                           
+                           <thead>
+                              <tr>
+                                 <th scope="col">Date</th>
+                                 <th scope="col">ID</th>
+                                 <th scope="col">Billing_name</th>
+                                
+                                 <th scope="col">Price</th>
+                                 <th scope="col">Status</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                            
+                              <tr *ngFor="let data of storeData | filter:seacrhfilter" 
+                           
+                              >
+                                 <th scope="row"><a href="#"></a>{{data.date | date:'short'}}</th>
+                                 <td>{{data.id}}</td>
+                                 <td><a href="#" class="text-primary">{{data.billing_name}}</a></td>
+                                 <td>{{'$'+data.amount}}</td>
+                                 <td><span    [ngStyle]="{'color':(data.order_status==='delivered')?'green'
+                                    :(data.order_status==='processing')?'blue'
+                                    :(data.order_status==='refund')?'red'
+                                    :(data.order_status==='in delivery')?'skyblue'
+                                    :''}" >{{data.order_status }}
+
+                                    
+                                   
+                                 </span>
+                                 </td>
+                              </tr>
+                        
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            
+            </div>
+         </div>
+        
+       </div>
+    </section>
+ </main>

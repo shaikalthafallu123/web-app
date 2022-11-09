@@ -1,0 +1,36 @@
+.btn{
+    border-radius: 30px;
+    width:100%;
+    margin-top: 25px;
+    font-weight: 700;
+}
+.form-control{
+    border-radius: 30px;
+}
+.form-label{
+    font-weight: 600;
+}
+/* 
+.form-group i {
+    margin-left: 400px;
+    cursor: pointer;
+ 
+    top: 44%;
+} */
+.showbtn{
+    position: absolute;
+    margin-top: -30px;
+    cursor: pointer;
+    margin-left: 200px;
+}
+  
+.text-center{
+    text-decoration-line: underline;
+}
+.center{
+   text-align: center;
+}
+  
+
+
+

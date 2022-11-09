@@ -1,0 +1,23 @@
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
+})
+export class HeaderComponent implements OnInit {
+  datasource: any;
+
+  constructor(@Inject(DOCUMENT) private document: Document) { }
+
+  ngOnInit(): void {
+    console.log(this.datasource)
+  }
+  sidebarToggle()
+  {
+    //toggle sidebar function
+    this.document.body.classList.toggle('toggle-sidebar');
+  }
+ 
+}
