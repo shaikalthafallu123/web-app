@@ -4,16 +4,18 @@ import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthserviceService } from '../authservice.service';
 
+
 @Component({
   selector: 'app-sing-up',
   templateUrl: './sing-up.component.html',
   styleUrls: ['./sing-up.component.css']
 })
 export class SingUpComponent implements OnInit {
-
+  public chart: any;
   public signupForm :any=FormGroup;
   visable:boolean=true;
   changetype:boolean=true;
+  weekdays: any;
   constructor(private fb:FormBuilder,
     private authservice:AuthserviceService, 
     private toast:NgToastService,
@@ -21,6 +23,11 @@ export class SingUpComponent implements OnInit {
 
   ngOnInit(): void {
 
+  
+  
+
+
+   
 this.signupForm=this.fb.group({
 
  email:['',[Validators.email, Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]],
@@ -30,6 +37,7 @@ this.signupForm=this.fb.group({
 
 
   }
+ 
 
   show(){
 this.visable=!this.visable;
